@@ -1,8 +1,10 @@
 require('dotenv').config();
 const express = require('express');
 const { Client, GatewayIntentBits } = require('discord.js');
+
 const app = express();
 
+// Discord client setup
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -12,10 +14,11 @@ const client = new Client({
   ],
 });
 
+// Login with your bot's token
 const TOKEN = process.env.TOKEN;
 
 client.on('ready', () => {
-  console.log(`Bot đã sẵn sàng, đăng nhập với tên ${client.user.tag}!`);
+  console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on('messageCreate', (message) => {
@@ -25,21 +28,12 @@ client.on('messageCreate', (message) => {
   }
 });
 
-client.on('messageCreate', (message) => {
-  if (message.author.bot) return;
-  if (message.content === 'hello') {
-    message.reply(`Hello ${message.author.globalName}`);
-  }
-});
-
 client.login(TOKEN);
 
-// HTTP server để Vercel không tắt ứng dụng
+// Make sure you have an HTTP response for Vercel
 app.get('/', (req, res) => {
-  res.send('Bot Discord đang chạy!');
+  res.send('Discord bot is running');
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server đang chạy trên cổng ${PORT}`);
-});
+// Start the server (for Vercel's serverless environment)
+module.exports = app;
