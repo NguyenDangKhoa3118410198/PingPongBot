@@ -1,0 +1,11 @@
+{
+  "name": "Bot discord",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "author": "Nguyen Dang Khoa <71954389+NguyenDangKhoa3118410198@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.7"
+  }
+}
