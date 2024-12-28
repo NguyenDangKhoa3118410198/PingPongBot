@@ -1,5 +1,7 @@
 require('dotenv').config();
+const express = require('express');
 const { Client, GatewayIntentBits } = require('discord.js');
+const app = express();
 
 const client = new Client({
   intents: [
@@ -31,3 +33,13 @@ client.on('messageCreate', (message) => {
 });
 
 client.login(TOKEN);
+
+// HTTP server để Vercel không tắt ứng dụng
+app.get('/', (req, res) => {
+  res.send('Bot Discord đang chạy!');
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server đang chạy trên cổng ${PORT}`);
+});
