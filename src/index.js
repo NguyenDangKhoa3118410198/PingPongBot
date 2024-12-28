@@ -4,7 +4,6 @@ const { Client, GatewayIntentBits } = require('discord.js');
 
 const app = express();
 
-// Discord client setup
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -14,7 +13,6 @@ const client = new Client({
   ],
 });
 
-// Login with your bot's token
 const TOKEN = process.env.TOKEN;
 
 client.on('ready', () => {
@@ -30,10 +28,8 @@ client.on('messageCreate', (message) => {
 
 client.login(TOKEN);
 
-// Make sure you have an HTTP response for Vercel
 app.get('/', (req, res) => {
   res.send('Discord bot is running');
 });
 
-// Start the server (for Vercel's serverless environment)
 module.exports = app;
