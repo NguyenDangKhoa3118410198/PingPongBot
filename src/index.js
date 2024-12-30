@@ -22,7 +22,7 @@ client.on('ready', () => {
 client.on('messageCreate', (message) => {
   if (message.author.bot) return;
   if (message.content === '!ping') {
-    message.reply('Pong!');
+    message.reply('Pong! I am a bot');
   }
 
   if (message.content === 'hello') {
