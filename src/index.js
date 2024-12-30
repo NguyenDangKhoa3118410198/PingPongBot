@@ -24,6 +24,10 @@ client.on('messageCreate', (message) => {
   if (message.content === '!ping') {
     message.reply('Pong!');
   }
+
+  if (message.content === 'hello') {
+    message.reply(`Hello ${message.author.globalName}!`);
+  }
 });
 
 client.login(TOKEN);
