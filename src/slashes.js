@@ -1,5 +1,5 @@
-const { REST, Routes } = require('discord.js');
-const functions = require('./functions');
+import { REST, Routes } from 'discord.js';
+import * as functions from './functions.js';
 const { TOKEN, CLIENT_ID } = process.env;
 
 const commands = [
@@ -10,6 +10,7 @@ const commands = [
     description: 'Liệt kê danh sách thành viên trong server',
   },
   { name: 'help', description: 'Hiển thị danh sách lệnh' },
+  { name: 'happy-new-year', description: 'Happy new year' },
   {
     name: 'rock-paper-scissors',
     description: 'Chơi Oẳn Tù Xì với bot',
@@ -24,6 +25,18 @@ const commands = [
           { name: '🪨 Búa', value: 'bua' },
           { name: '📜 Bao', value: 'bao' },
         ],
+      },
+    ],
+  },
+  {
+    name: 'clear',
+    description: 'Xóa tin nhắn trong chat',
+    options: [
+      {
+        name: 'amount',
+        type: 4,
+        description: 'Số lượng tin nhắn cần xóa',
+        required: true,
       },
     ],
   },
@@ -66,4 +79,4 @@ const handleSlashCommand = async (interaction) => {
   return interaction.reply({ content: 'Lệnh không hợp lệ!', ephemeral: true });
 };
 
-module.exports = { registerSlashCommands, handleSlashCommand };
+export { registerSlashCommands, handleSlashCommand };

@@ -1,8 +1,7 @@
-require('dotenv').config();
-const express = require('express');
-const { Client, GatewayIntentBits } = require('discord.js');
-const { registerSlashCommands, handleSlashCommand } = require('./slashes');
-
+import 'dotenv/config';
+import express from 'express';
+import { Client, GatewayIntentBits } from 'discord.js';
+import { registerSlashCommands, handleSlashCommand } from './slashes.js';
 const app = express();
 
 const client = new Client({
@@ -34,4 +33,4 @@ app.get('/', (req, res) => {
   res.send('Discord bot is running');
 });
 
-module.exports = app;
+export default app;
