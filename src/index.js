@@ -18,9 +18,11 @@ const TOKEN = process.env.TOKEN;
 client.once('ready', async () => {
   console.log(`Logged in as ${client.user.tag}!`);
 
-  const GUILD_IDS = process.env.GUILD_IDS.split(',');
+  const GUILD_IDS = process.env.GUILD_IDS ? process.env.GUILD_IDS.split(',') : [];
   for (const GUILD_ID of GUILD_IDS) {
-    await registerSlashCommands(GUILD_ID);
+    if (GUILD_ID) {
+      await registerSlashCommands(GUILD_ID);
+    }
   }
 });
 
